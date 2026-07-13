@@ -32,7 +32,7 @@ Website berhasil di-hosting dan dapat diakses secara online melalui tautan berik
 **URL:** 
 [https://letslumierecookies.page.gd/] halaman index
 [https://letslumierecookies.page.gd/index.php?page=catalog] halaman catalog
-[https://letslumierecookies.page.gd/?page=login] halaman admin. username: admin. password: admin123.
+
 
 
 ![Screenshot website](assets/screenshot.png)
