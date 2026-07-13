@@ -1,0 +1,20 @@
+# Environment
+.env
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Upload (biarkan folder, abaikan isi yang di-upload runtime)
+public/assets/images/products/*
+public/assets/images/gallery/*
+public/assets/images/articles/*
+public/assets/images/banners/*
+!public/assets/images/**/.gitkeep
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

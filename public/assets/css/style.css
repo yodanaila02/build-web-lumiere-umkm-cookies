@@ -1,0 +1,141 @@
+/*
+FILE: public/assets/css/style.css
+RESPONSIBLE MEMBER: HYUGA
+FEATURE: Style premium (shadcn-inspired) — badge, hover, animasi, skeleton
+*/
+
+:root {
+  --primary: #A47551;
+  --hover: #8C6244;
+  --line: #EADFD6;
+  --heading: #2C2018;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+::selection { background: rgba(221, 190, 169, .6); }
+
+/* Scrollbar halus */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #DDBEA9; border-radius: 99px; border: 3px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-thumb:hover { background: #CB997E; background-clip: content-box; }
+
+/* Navbar */
+#navbar.nav-scrolled nav { box-shadow: 0 6px 24px -16px rgba(44,32,24,.4); }
+
+/* ---------- Badge produk ---------- */
+.badge {
+  display: inline-flex; align-items: center; gap: .25rem;
+  font-size: 11px; font-weight: 600; letter-spacing: .02em;
+  padding: 3px 10px; border-radius: 999px; line-height: 1;
+}
+.badge-best     { background: #2C2018; color: #FBF6EF; }
+.badge-new      { background: #6FA773; color: #fff; }
+.badge-limited  { background: #D9776A; color: #fff; }
+.badge-preorder { background: #E0A852; color: #2C2018; }
+
+/* ---------- Status order ---------- */
+.status-pill { font-size: 12px; font-weight: 600; padding: 3px 12px; border-radius: 999px; display: inline-flex; align-items: center; gap: .35rem; }
+.status-pending    { background: #FBEFD6; color: #9A6B17; }
+.status-processing { background: #E2EEF8; color: #2C6CA3; }
+.status-done       { background: #E2F2E4; color: #3F7A45; }
+.status-cancelled  { background: #FBE3E0; color: #B14437; }
+
+/* ---------- Cart badge pop ---------- */
+@keyframes badgePop {
+  0% { transform: scale(.4); }
+  55% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+.badge-pop { animation: badgePop .4s cubic-bezier(.34,1.56,.64,1); }
+
+/* ---------- Product card hover (shadcn-style lift) ---------- */
+.product-card {
+  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, border-color .35s;
+  will-change: transform;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px -18px rgba(140,98,68,.45);
+  border-color: rgba(164,117,81,.4);
+}
+.product-card img { transition: transform .5s cubic-bezier(.22,1,.36,1); }
+.product-card:hover img { transform: scale(1.06); }
+
+/* Tombol primary dengan sheen halus */
+.btn-primary {
+  position: relative; overflow: hidden;
+  transition: transform .2s, box-shadow .3s, background-color .25s;
+}
+.btn-primary:hover { transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0) scale(.985); }
+
+/* Ripple shine */
+.btn-shine::after {
+  content: ''; position: absolute; top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+  transform: skewX(-20deg); transition: left .6s;
+}
+.btn-shine:hover::after { left: 140%; }
+
+/* ---------- FAQ accordion ---------- */
+[data-faq-body] { max-height: 0; overflow: hidden; transition: max-height .35s cubic-bezier(.22,1,.36,1); }
+[data-faq] .faq-icon { transition: transform .3s; }
+
+/* ---------- Skeleton loading ---------- */
+.skeleton {
+  background: linear-gradient(90deg, #F5EBE0 25%, #EFE2D5 37%, #F5EBE0 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-radius: 12px;
+}
+@keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+/* ---------- Hero gradient mesh & grain ---------- */
+.hero-mesh {
+  background:
+    radial-gradient(40% 50% at 12% 20%, rgba(221,190,169,.55), transparent 60%),
+    radial-gradient(45% 55% at 88% 12%, rgba(203,153,126,.40), transparent 60%),
+    radial-gradient(60% 60% at 70% 90%, rgba(164,117,81,.18), transparent 60%),
+    #FBF6EF;
+}
+.grain::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Float anim */
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+.floaty { animation: floaty 6s ease-in-out infinite; }
+.floaty-slow { animation: floaty 9s ease-in-out infinite; }
+
+/* Underline link */
+.link-underline { position: relative; }
+.link-underline::after {
+  content: ''; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0;
+  background: var(--primary); transition: width .3s;
+}
+.link-underline:hover::after { width: 100%; }
+
+/* Admin sidebar active */
+.admin-link.active { background: rgba(164,117,81,.12); color: #2C2018; font-weight: 600; }
+.admin-link.active i { color: #A47551; }
+
+/* Card entrance reveal fallback (jika AOS gagal) */
+.reveal-up { opacity: 1; }
+
+/* Input fokus ring lembut */
+.field {
+  transition: border-color .2s, box-shadow .2s;
+}
+.field:focus {
+  outline: none;
+  border-color: #A47551;
+  box-shadow: 0 0 0 4px rgba(164,117,81,.15);
+}
+
+/* Swiper pagination warna brand */
+.testi-pagination .swiper-pagination-bullet { background: #CB997E; opacity: .4; }
+.testi-pagination .swiper-pagination-bullet-active { opacity: 1; background: #A47551; width: 22px; border-radius: 6px; }

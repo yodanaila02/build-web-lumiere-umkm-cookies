@@ -1,0 +1,13 @@
+# Lumiere Cookies — konfigurasi Apache (opsional, aplikasi tetap jalan tanpa ini)
+DirectoryIndex index.php
+
+# Arahkan request ke index.php bila file/folder tidak ada (mempercantik fallback)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Keamanan dasar: cegah listing direktori
+Options -Indexes
